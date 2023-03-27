@@ -1,1 +1,1 @@
-live link: vedant.social
+live link: https://vedant.social/
