@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>Education</title>
+</head>
+
+<body>
+    <div class="grid-containerr">
+        <div class="item1">
+            <ul class="wrapper">
+                <a href="">
+                    <li style="border-radius: 10px" class="icon facebook">
+                        <span><i class="fa fa-sliders"></i></span>
+                    </li>
+                </a>
+                <a href="index.html">
+                    <li style="border-radius: 10px" class="icon twitter">
+                        <span><i class="fa fa-user"></i></span>
+                    </li>
+                    <p>ABOUT</p>
+                </a>
+                <a href="education.html">
+                    <li style="border-radius: 10px" class="icon instagram">
+                        <span><i class="fa fa-file-lines"></i></span>
+                    </li>
+                    <p>EDU</p>
+                </a>
+                <a href="works.html">
+                    <li style="border-radius: 10px" class="icon github">
+                        <span><i class="fa fa-paintbrush"></i></span>
+                    </li>
+                    <p>WORKS</p>
+                </a>
+                <a href="project.html">
+                    <li style="border-radius: 10px" class="icon youtube">
+                        <span><i class="fa fa-message"></i></span>
+                    </li>
+                    <p>PROJECTS</p>
+                </a>
+                <a href="contact.html">
+                    <li style="border-radius: 10px" class="icon instagram">
+                        <span><i class="fa fa-at"></i></span>
+                    </li>
+                    <p>CONTACT</p>
+                </a>
+            </ul>
+        </div>
+        <form class="form" onsubmit="sendEmail(); reset(); return false">
+            <h2>CONTACT ME</h2>
+            <p type="Name:"><input id="name" placeholder="Write your name here.."></input></p>
+            <p type="Email:"><input id="email" placeholder="Let us know how to contact you back.."></input></p>
+            <p type="Message:"><input id="message" placeholder="What would you like to tell us.."></input></p>
+            <button type="submit">Send Message</button>
+            <div class="form-div">
+                <span class="fa fa-phone"></span>+91 8825376583
+                <span class="fa fa-envelope-o"></span> vedant@iiitmanipur.ac.in
+            </div>
+        </form>
+    </div>
+    <script src="https://kit.fontawesome.com/7195b718c9.js" crossorigin="anonymous"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        function sendEmail() {
+            Email.send({
+                SecureToken: "3c1c6f6f-b893-4f11-94e8-36bd54a14831",
+                To: 'vedant@iiitmanipur.ac.in',
+                From: "vedant@vedant.social",
+                Subject: "Portfolio message from " + document.getElementById("name").value,
+                Body: "Name: " + document.getElementById('name').value 
+                    + '<br/> <br/> Email: '  + document.getElementById('email').value
+                    + '<br/> <br/> Message: '  + document.getElementById('message').value
+            }).then(
+                message => alert(message)
+            );
+        }
+    </script>
+</body>
+
+</html>
