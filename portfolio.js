@@ -33,6 +33,9 @@ $(document).ready(function () {
         // Scroll to the top of the .item2 element
         $('.item2').scrollTop(0);
 
+        // Scroll the window to the top
+        $(window).scrollTop(0);
+
         return false;
     });
 
@@ -65,6 +68,7 @@ $(document).ready(function () {
         toggleVisibility();
     });
 });
+
 
 
 
