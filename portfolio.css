@@ -265,4 +265,8 @@
 	.gallery {
 		overflow:visible;
 	  }
+	.gallery li {
+		width: 100%;
+	}
+	
   }
