@@ -82,10 +82,8 @@
   
   /* Gallery styles */
   .gallery {
-	padding: 0px 0 300px;
-	position: relative;
-	overflow: hidden;
-  }
+	position: static;
+}
   
   .gallery ul {
 	padding-top: 50px;
@@ -268,5 +266,7 @@
 	.gallery li {
 		width: 100%;
 	}
-	
+	.item2 {
+		height: 780px;
+	}
   }
