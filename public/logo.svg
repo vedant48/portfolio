@@ -1,0 +1,43 @@
+<svg width="250" height="48" viewBox="0 0 250 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .bg { fill: #0d0d0d; stroke: #222222; }
+    .fg { fill: #ffffff; }
+    .fg-muted { fill: #888888; }
+    .acc { fill: #F5C518; }
+    .acc-stroke { stroke: #F5C518; }
+    .grid-line { stroke: #222222; }
+    .text-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: 0.22em; }
+    .text-sub { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 9px; letter-spacing: 0.18em; }
+    @media (prefers-color-scheme: light) {
+      .bg { fill: #f4f4f0; stroke: #e4e4dc; }
+      .fg { fill: #0a0a08; }
+      .fg-muted { fill: #7a7a70; }
+      .grid-line { stroke: #e4e4dc; }
+    }
+  </style>
+
+  <!-- Emblem Icon Mark (0..44) -->
+  <g transform="translate(2, 2)">
+    <rect class="bg" x="1.5" y="1.5" width="41" height="41" rx="8" stroke-width="1.5" />
+    <line class="grid-line" x1="1.5" y1="12" x2="42.5" y2="12" stroke-width="0.5" opacity="0.5" />
+    <line class="grid-line" x1="32" y1="1.5" x2="32" y2="42.5" stroke-width="0.5" opacity="0.5" />
+    <path class="acc-stroke" d="M32 4H38C39.1 4 40 4.9 40 6V12" stroke-width="1.75" stroke-linecap="round" />
+    
+    <!-- 'V' Monogram -->
+    <path class="fg" d="M10 13L18.5 30.5H21L29.5 13H25.2L19.75 24.5L14.3 13H10Z" />
+    
+    <!-- 'K' Branches -->
+    <path class="acc" d="M21.5 19.5L28.5 13H33L24.8 20.8L21.5 19.5Z" />
+    <path class="acc" d="M23 20L31.5 30.5H27L19.8 21.8L23 20Z" />
+    <circle class="acc" cx="19.75" cy="27.5" r="1" />
+  </g>
+
+  <!-- Typographic Wordmark with distinct space -->
+  <g transform="translate(56, 20)">
+    <text class="fg text-title" x="0" y="0">VEDANT</text>
+    <text class="text-title" fill="none" stroke="#F5C518" stroke-width="1.2" x="106" y="0">KUMAR</text>
+    <circle class="acc" cx="192" cy="-4" r="2.5" />
+    
+    <text class="fg-muted text-sub" x="0" y="15">SE · PRODUCT · AI</text>
+  </g>
+</svg>

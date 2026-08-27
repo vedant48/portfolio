@@ -1,26 +1,459 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ===========================================================
+   VEDANT KUMAR — Portfolio
+   Design language: Kurosawa / black canvas / signal yellow / Montserrat 800
+   =========================================================== */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* ---- Canvas: Light mode ---- */
+    --ink:      #FAFAF8;
+    --ink-2:    #F4F4F0;
+    --ink-3:    #EEEEE8;
+    --panel:    #FFFFFF;
+    --panel-2:  #F8F8F4;
+
+    /* ---- Signal Yellow Accent (same in both modes) ---- */
+    --acc:      #F5C518;
+    --acc-dim:  rgba(245, 197, 24, 0.35);
+    --acc-text: #8B6F00;
+
+    /* ---- Foreground: Light mode ---- */
+    --fg:       #0A0A08;
+    --fg-2:     #4A4A42;
+    --fg-3:     #7A7A70;
+    --fg-4:     #AAAAAA;
+    --fg-5:     #DDDDDA;
+
+    /* ---- Lines: Light mode ---- */
+    --line:     #E4E4DC;
+    --line-2:   #EEEEEA;
+
+    /* ---- Status ---- */
+    --ok:       #22C55E;
+
+    /* ---- Fonts ---- */
+    --display:  'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+    --body:     'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+
+    /* ---- Easing ---- */
+    --ease:     cubic-bezier(.16, 1, .3, 1);
+    --ease-out: cubic-bezier(.4, 0, .2, 1);
+
+    /* ---- Layout ---- */
+    --gut:      clamp(20px, 5vw, 64px);
+    --nav-h:    72px;
+    --max-w:    1240px;
+  }
+
+  .dark {
+    /* ---- Canvas: Dark mode (Kurosawa original) ---- */
+    --ink:      #000000;
+    --ink-2:    #050505;
+    --ink-3:    #0a0a0a;
+    --panel:    #0d0d0d;
+    --panel-2:  #111111;
+
+    /* ---- Foreground: Dark mode ---- */
+    --fg:       #FFFFFF;
+    --fg-2:     #888888;
+    --fg-3:     #555555;
+    --fg-4:     #333333;
+    --fg-5:     #222222;
+
+    /* ---- Lines: Dark mode ---- */
+    --line:     #1a1a1a;
+    --line-2:   #111111;
+
+    /* ---- Accent text in dark (yellow stays same) ---- */
+    --acc-text: #F5C518;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ===========================================================
+   RESET
+   =========================================================== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--ink);
+  color: var(--fg);
+  font-family: var(--body);
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.4s var(--ease), color 0.4s var(--ease);
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; background: none; border: 0; color: inherit; cursor: pointer; }
+
+/* ===========================================================
+   SELECTION — Kurosawa yellow selection
+   =========================================================== */
+::selection {
+  background: var(--acc);
+  color: #000;
+}
+
+/* ===========================================================
+   FOCUS
+   =========================================================== */
+:focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 3px;
+}
+
+/* ===========================================================
+   SCROLLBAR
+   =========================================================== */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--fg-4); }
+
+/* ===========================================================
+   GRAIN OVERLAY — Fixed noise texture at 4.5% opacity
+   =========================================================== */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+  opacity: .045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+}
+
+/* ===========================================================
+   CUSTOM CURSOR — Yellow dot + lagging ring
+   =========================================================== */
+#vk-cursor, #vk-cursor-ring { display: none; }
+
+body.has-cursor { cursor: none; }
+body.has-cursor a,
+body.has-cursor button { cursor: none; }
+
+body.has-cursor #vk-cursor {
+  display: block;
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 9999;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--acc);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+body.has-cursor #vk-cursor-ring {
+  display: block;
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 9998;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--acc-dim);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  transition: width .25s ease, height .25s ease, border-color .25s ease;
+}
+
+body.cursor-hot #vk-cursor { width: 16px; height: 16px; }
+body.cursor-hot #vk-cursor-ring {
+  width: 56px; height: 56px;
+  border-color: rgba(245, 197, 24, 0.6);
+}
+
+/* ===========================================================
+   SCROLL PROGRESS BAR — Yellow 2px top bar
+   =========================================================== */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  z-index: 9990;
+  background: transparent;
+  pointer-events: none;
+}
+.scroll-progress-fill {
+  height: 100%;
+  width: 100%;
+  background: var(--acc);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .1s linear;
+}
+
+/* ===========================================================
+   LAYOUT UTILITIES
+   =========================================================== */
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--gut);
+}
+
+/* ===========================================================
+   TYPOGRAPHY SYSTEM — Kurosawa
+   =========================================================== */
+
+/* Eyebrow label — Montserrat 800, uppercase, yellow */
+.eyebrow {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 10px;
+  letter-spacing: .5em;
+  text-transform: uppercase;
+  color: var(--acc);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.eyebrow-mute {
+  color: var(--fg-4);
+}
+
+/* Display headings — Montserrat 800, tight */
+.h-display {
+  font-family: var(--display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -.02em;
+  line-height: .92;
+  color: var(--fg);
+}
+
+.h-xl { font-size: clamp(34px, 7vw, 84px); }
+.h-lg { font-size: clamp(28px, 5vw, 54px); }
+.h-md { font-size: clamp(22px, 3.4vw, 38px); }
+.h-sm { font-size: clamp(18px, 2.5vw, 28px); }
+
+/* Outline text — transparent fill with yellow stroke */
+.text-outline {
+  -webkit-text-stroke: clamp(1.2px, 0.2vw, 2.2px) var(--acc);
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: inline;
+}
+
+.text-outline-sm {
+  -webkit-text-stroke: 1px var(--acc);
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: inline;
+}
+
+/* Lede / body large */
+.lede {
+  font-size: clamp(14px, 1.5vw, 16px);
+  color: var(--fg-2);
+  line-height: 1.75;
+  max-width: 56ch;
+}
+
+/* ===========================================================
+   SECTIONS
+   =========================================================== */
+.section { padding: clamp(72px, 11vw, 140px) 0; }
+.section-tight { padding-top: 0; }
+.section-head { margin-bottom: clamp(36px, 6vw, 72px); }
+.section-head p { margin-top: 18px; }
+
+.rule { height: 1px; background: var(--line); border: 0; }
+
+/* ===========================================================
+   BUTTONS — Kurosawa style (sharp 3px radius)
+   =========================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 14px 26px;
+  border-radius: 3px;
+  transition: opacity .2s ease, color .2s ease, border-color .2s ease, background .2s ease;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--acc);
+  color: #111;
+}
+.btn-primary:hover { opacity: .85; }
+
+.btn-ghost {
+  color: var(--fg-2);
+  border: 1px solid var(--fg-5);
+}
+.btn-ghost:hover {
+  color: var(--acc);
+  border-color: var(--acc);
+}
+
+/* ===========================================================
+   MARQUEE
+   =========================================================== */
+.marquee {
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: inline-flex;
+  gap: 0;
+  animation: marquee-scroll 32s linear infinite;
+}
+
+.marquee-track span {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  padding: 0 28px;
+}
+
+.marquee-track span.sep {
+  color: var(--acc);
+  padding: 0 8px;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ===========================================================
+   REVEAL ANIMATIONS — Kurosawa pattern
+   =========================================================== */
+.reveal-line {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+  padding-bottom: .14em;
+  margin-bottom: -.14em;
+}
+
+.reveal-line > span {
+  display: inline-block;
+  will-change: transform;
+  transform: translateY(110%);
+  transition: transform 0.85s var(--ease);
+}
+
+.reveal-line.is-visible > span {
+  transform: translateY(0);
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+.fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up-delay-1 { transition-delay: 0.1s; }
+.fade-up-delay-2 { transition-delay: 0.2s; }
+.fade-up-delay-3 { transition-delay: 0.3s; }
+.fade-up-delay-4 { transition-delay: 0.45s; }
+
+/* ===========================================================
+   NAV — transparent → scrolled glass
+   =========================================================== */
+.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 220;
+  height: var(--nav-h);
+  padding: 0 var(--gut);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background .4s ease, border-color .4s ease, backdrop-filter .4s ease;
+}
+
+.site-nav.is-scrolled {
+  background: rgba(250, 250, 248, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: var(--line);
+}
+
+.dark .site-nav.is-scrolled {
+  background: rgba(6, 6, 6, 0.92);
+}
+
+/* ===========================================================
+   CARDS / PANELS
+   =========================================================== */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+
+.panel-2 {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+}
+
+/* ===========================================================
+   PRINT
+   =========================================================== */
+@media print {
+  body { background: #fff !important; color: #000 !important; }
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+}
+
+/* ===========================================================
+   KEYFRAMES
+   =========================================================== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseOk {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.animate-fadeIn { animation: fadeIn 0.4s var(--ease) forwards; }
+.animate-pulse-ok { animation: pulseOk 2s ease-in-out infinite; }
