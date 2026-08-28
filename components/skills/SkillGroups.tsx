@@ -16,22 +16,15 @@ export function SkillGroups() {
           </p>
         </div>
 
-        {/* 2-col grid of sharp bordered panels */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 2,
-          }}
-        >
+        {/* Responsive Grid: 1 col on mobile/tablet, 2 cols on desktop */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 bg-[var(--line)] border border-[var(--line)]">
           {skillCategories.map((cat, idx) => (
             <div
               key={cat.title}
               className="fade-up"
               style={{
                 background: "var(--panel)",
-                border: "1px solid var(--line)",
-                padding: "clamp(24px, 3vw, 40px)",
+                padding: "clamp(20px, 3.5vw, 40px)",
                 animationDelay: `${idx * 0.08}s`,
               }}
             >
@@ -43,7 +36,8 @@ export function SkillGroups() {
                   justifyContent: "space-between",
                   borderBottom: "1px solid var(--line)",
                   paddingBottom: 16,
-                  marginBottom: 24,
+                  marginBottom: 20,
+                  gap: 12,
                 }}
               >
                 <div>
@@ -55,6 +49,7 @@ export function SkillGroups() {
                       letterSpacing: "-.01em",
                       textTransform: "uppercase",
                       color: "var(--fg)",
+                      lineHeight: 1.15,
                     }}
                   >
                     {cat.title}
@@ -63,7 +58,7 @@ export function SkillGroups() {
                     style={{
                       fontSize: 12,
                       color: "var(--fg-3)",
-                      marginTop: 3,
+                      marginTop: 4,
                       display: "block",
                     }}
                   >
@@ -77,32 +72,27 @@ export function SkillGroups() {
                     fontSize: 10,
                     letterSpacing: ".35em",
                     color: "var(--acc)",
+                    flexShrink: 0,
                   }}
                 >
                   0{idx + 1}
                 </span>
               </div>
 
-              {/* Skills list */}
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "12px 20px",
-                }}
-              >
+              {/* Responsive Skills sub-grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 md:gap-5">
                 {cat.skills.map((skill) => (
-                  <div key={skill.name}>
+                  <div key={skill.name} className="p-1">
                     <span
                       style={{
                         display: "block",
                         fontFamily: "var(--display)",
                         fontWeight: 800,
                         fontSize: 11,
-                        letterSpacing: ".2em",
+                        letterSpacing: ".18em",
                         textTransform: "uppercase",
                         color: "var(--fg)",
-                        marginBottom: 4,
+                        marginBottom: 3,
                       }}
                     >
                       {skill.name}
