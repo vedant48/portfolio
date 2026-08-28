@@ -69,85 +69,57 @@ export function AgencyMockup() {
         </div>
       </div>
 
-      {/* Mockup Viewport */}
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          height: "clamp(300px, 32vw, 440px)",
-          background: "#0a0c10",
-          overflow: "hidden",
-        }}
-        className="group/viewport"
-      >
+      {/* Full 16:9 Image Viewport (Unclipped & fully visible) */}
+      <div className="relative w-full aspect-[16/9] bg-[#0a0c10] overflow-hidden group/viewport">
         <Image
           src="/mockups/sellerex-agency-mockup.jpg"
           alt="SellereX Agency Multi-Tenant Brand Management Portal"
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1000px"
-          className="object-cover object-top transition-transform duration-700 ease-out group-hover/viewport:scale-[1.02]"
+          className="object-cover object-center transition-transform duration-700 ease-out group-hover/viewport:scale-[1.01]"
           priority
         />
+      </div>
 
-        {/* Subtle dark gradient overlay */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "linear-gradient(to bottom, transparent 65%, rgba(0,0,0,0.7) 100%)",
-            pointerEvents: "none",
-          }}
-        />
-
-        {/* Bottom Floating Meta Pill */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 12,
-            left: 14,
-            right: 14,
-            background: "rgba(10, 10, 12, 0.88)",
-            backdropFilter: "blur(8px)",
-            border: "1px solid var(--line)",
-            padding: "8px 14px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: 8,
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <span
-              style={{
-                fontFamily: "var(--display)",
-                fontWeight: 800,
-                fontSize: 9,
-                letterSpacing: ".25em",
-                textTransform: "uppercase",
-                color: "var(--acc)",
-              }}
-            >
-              SellereX Agency
-            </span>
-            <span style={{ fontSize: 11, color: "var(--fg-2)" }}>
-              Multi-tenant client switcher, cross-brand catalog syndication matrix, and ad campaign ROAS telemetry.
-            </span>
-          </div>
-
+      {/* Clean Bottom Meta Strip */}
+      <div
+        style={{
+          background: "var(--panel)",
+          borderTop: "1px solid var(--line)",
+          padding: "8px 14px",
+        }}
+        className="flex items-center justify-between flex-wrap gap-2 text-xs"
+      >
+        <div className="flex items-center gap-2">
           <span
             style={{
               fontFamily: "var(--display)",
               fontWeight: 800,
-              fontSize: 8,
+              fontSize: 9,
               letterSpacing: ".2em",
               textTransform: "uppercase",
-              color: "var(--ok)",
+              color: "var(--acc)",
             }}
           >
-            ● High-Density System Design
+            SellereX Agency
+          </span>
+          <span style={{ fontSize: 11, color: "var(--fg-3)" }}>
+            Multi-client management, syndication status &amp; ROAS analytics
           </span>
         </div>
+
+        <span
+          style={{
+            fontFamily: "var(--display)",
+            fontWeight: 800,
+            fontSize: 8,
+            letterSpacing: ".2em",
+            textTransform: "uppercase",
+            color: "var(--ok)",
+          }}
+        >
+          ● Full UI Preview
+        </span>
       </div>
     </div>
   );

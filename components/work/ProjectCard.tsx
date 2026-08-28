@@ -41,23 +41,19 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
         className="fade-up group"
         style={{
           ...cardBase,
-          padding: "clamp(28px, 4vw, 56px)",
+          padding: "clamp(20px, 3.5vw, 48px)",
         }}
       >
         {/* Top meta row */}
         <div
           style={{
-            display: "flex",
-            alignItems: "baseline",
-            justifyContent: "space-between",
-            gap: 16,
             borderBottom: "1px solid var(--line)",
-            paddingBottom: 24,
-            marginBottom: 32,
-            flexWrap: "wrap",
+            paddingBottom: 18,
+            marginBottom: 24,
           }}
+          className="flex flex-col sm:flex-row sm:items-center justify-between gap-3"
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
             <span
               style={{
                 fontFamily: "var(--display)",
@@ -84,7 +80,7 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
           </div>
           <span
             style={{
-              fontSize: 12,
+              fontSize: 11,
               color: "var(--fg-3)",
               fontFamily: "var(--body)",
               letterSpacing: ".04em",
@@ -94,43 +90,33 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
           </span>
         </div>
 
-        {/* Headline + blurb */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr auto",
-            gap: "clamp(16px, 3vw, 48px)",
-            alignItems: "end",
-            marginBottom: "clamp(24px, 4vw, 40px)",
-            flexWrap: "wrap",
-          }}
-        >
-          <div>
+        {/* Headline + blurb + action */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-6">
+          <div className="max-w-2xl">
             <h3
               style={{
                 fontFamily: "var(--display)",
                 fontWeight: 800,
-                fontSize: "clamp(26px, 4vw, 48px)",
+                fontSize: "clamp(22px, 3.2vw, 42px)",
                 letterSpacing: "-.02em",
                 textTransform: "uppercase",
-                lineHeight: .92,
+                lineHeight: .95,
                 color: "var(--fg)",
-                marginBottom: 16,
+                marginBottom: 12,
               }}
             >
               {project.title}
             </h3>
-            <p style={{ fontSize: "clamp(13px, 1.4vw, 15px)", color: "var(--fg-2)", lineHeight: 1.7, maxWidth: "64ch" }}>
+            <p style={{ fontSize: "clamp(13px, 1.3vw, 15px)", color: "var(--fg-2)", lineHeight: 1.7 }}>
               {project.description}
             </p>
           </div>
 
           <Link
             href={`/work/${project.slug}`}
-            className="btn btn-primary"
-            style={{ flexShrink: 0, alignSelf: "flex-end" }}
+            className="btn btn-primary self-start md:self-end shrink-0"
           >
-            Case study →
+            <span>Case study →</span>
           </Link>
         </div>
 
@@ -141,13 +127,13 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
             border: "1px solid var(--line)",
             transition: "transform .35s var(--ease)",
           }}
-          className="group-hover:scale-[1.005]"
+          className="group-hover:scale-[1.005] w-full"
         >
           {renderMockup(project.id, false)}
         </div>
 
         {/* Tech tags */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 20 }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 18 }}>
           {project.technologies.map((t) => (
             <span
               key={t}
@@ -155,10 +141,10 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
                 fontFamily: "var(--display)",
                 fontWeight: 800,
                 fontSize: 9,
-                letterSpacing: ".3em",
+                letterSpacing: ".25em",
                 textTransform: "uppercase",
                 color: "var(--fg-3)",
-                padding: "4px 10px",
+                padding: "3px 8px",
                 border: "1px solid var(--line)",
               }}
             >
@@ -174,35 +160,33 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
   if (layoutVariant === "stacked") {
     return (
       <div style={{ marginTop: 8 }}>
-        <div style={{ overflow: "hidden", border: "1px solid var(--line)", height: 180 }}>
+        <div style={{ overflow: "hidden", border: "1px solid var(--line)" }} className="w-full">
           {renderMockup(project.id, true)}
         </div>
       </div>
     );
   }
 
-  // ── Split (default — content left, mockup right) ─────────────────────────
+  // ── Split (default — responsive grid) ─────────────────────────────────
   return (
     <article
       className="fade-up group"
       style={{
         ...cardBase,
-        padding: "clamp(24px, 3.5vw, 40px)",
+        padding: "clamp(20px, 3vw, 36px)",
         animationDelay: `${index * 0.1}s`,
       }}
     >
       {/* Header */}
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
           borderBottom: "1px solid var(--line)",
-          paddingBottom: 18,
-          marginBottom: 28,
+          paddingBottom: 16,
+          marginBottom: 22,
         }}
+        className="flex items-center justify-between"
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <span
             style={{
               fontFamily: "var(--display)",
@@ -232,49 +216,42 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
         </span>
       </div>
 
-      {/* Content + Mockup */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1.4fr",
-          gap: "clamp(20px, 4vw, 48px)",
-          alignItems: "center",
-        }}
-      >
+      {/* Responsive Grid: 1 col on mobile/tablet, 12 cols on desktop */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-10 items-center">
         {/* Left: text */}
-        <div>
+        <div className="lg:col-span-5">
           <h3
             style={{
               fontFamily: "var(--display)",
               fontWeight: 800,
-              fontSize: "clamp(18px, 2.4vw, 28px)",
+              fontSize: "clamp(18px, 2.2vw, 26px)",
               letterSpacing: "-.02em",
               textTransform: "uppercase",
-              lineHeight: .96,
+              lineHeight: .98,
               color: "var(--fg)",
-              marginBottom: 12,
+              marginBottom: 10,
             }}
           >
             {project.title}
           </h3>
-          <p style={{ fontSize: 13, color: "var(--fg-2)", lineHeight: 1.7, marginBottom: 20 }}>
+          <p style={{ fontSize: 13, color: "var(--fg-2)", lineHeight: 1.7, marginBottom: 18 }}>
             {project.description}
           </p>
 
           <div
             style={{
-              fontSize: 10,
+              fontSize: 9,
               fontFamily: "var(--display)",
               fontWeight: 800,
               letterSpacing: ".35em",
               textTransform: "uppercase",
               color: "var(--fg-4)",
-              marginBottom: 4,
+              marginBottom: 3,
             }}
           >
             My Role
           </div>
-          <div style={{ fontSize: 12, color: "var(--fg-2)", marginBottom: 20 }}>
+          <div style={{ fontSize: 12, color: "var(--fg-2)", marginBottom: 18 }}>
             {project.role}
           </div>
 
@@ -307,7 +284,6 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
               gap: 8,
               padding: "10px 18px",
               fontSize: 11,
-              marginTop: 6,
             }}
           >
             <span>{project.hasCaseStudy ? "Case study" : "View project"}</span>
@@ -322,7 +298,7 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
             border: "1px solid var(--line)",
             transition: "transform .35s var(--ease)",
           }}
-          className="group-hover:scale-[1.01]"
+          className="lg:col-span-7 w-full group-hover:scale-[1.01]"
         >
           {renderMockup(project.id, false)}
         </div>
