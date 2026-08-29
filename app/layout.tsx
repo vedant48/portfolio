@@ -18,9 +18,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Vedant Kumar — Software Engineer · Product · AI",
+  title: "Vedant Kumar · Software Engineer (Product · Frontend · AI)",
   description:
-    "Vedant Kumar is a Software Engineer building products at the intersection of frontend engineering, product development, UI/UX and AI.",
+    "Vedant Kumar is a Software Engineer building products at the intersection of frontend engineering, product development, UI/UX, and AI.",
   keywords: [
     "Vedant Kumar",
     "Software Engineer",
@@ -39,16 +39,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://vedantkumar.dev",
-    title: "Vedant Kumar — Software Engineer · Product · AI",
+    title: "Vedant Kumar · Software Engineer (Product · Frontend · AI)",
     description:
-      "Vedant Kumar is a Software Engineer building products at the intersection of frontend engineering, product development, UI/UX and AI.",
+      "Vedant Kumar is a Software Engineer building products at the intersection of frontend engineering, product development, UI/UX, and AI.",
     siteName: "Vedant Kumar",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vedant Kumar — Software Engineer · Product · AI",
+    title: "Vedant Kumar · Software Engineer (Product · Frontend · AI)",
     description:
-      "3+ years building SaaS, logistics and AI-powered products — from mobile applications to AI catalog workflows.",
+      "3+ years building SaaS, logistics, and AI-powered products from mobile applications to AI catalog workflows.",
   },
   robots: { index: true, follow: true },
 };
@@ -65,14 +65,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
-        {/* Kurosawa-style grain overlay */}
+        {/* Subtle texture grain */}
         <div className="grain" aria-hidden="true" />
 
-        {/* Custom cursor elements */}
-        <div id="vk-cursor" aria-hidden="true" />
-        <div id="vk-cursor-ring" aria-hidden="true" />
-
-        {/* Scroll progress bar */}
+        {/* Scroll progress indicator */}
         <div className="scroll-progress" aria-hidden="true">
           <div className="scroll-progress-fill" id="scroll-fill" />
         </div>

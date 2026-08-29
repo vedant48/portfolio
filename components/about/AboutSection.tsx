@@ -3,9 +3,9 @@ import { profile } from "@/data/profile";
 
 export function AboutSection() {
   const traits = [
-    { label: "Product Intuition", body: "Deconstructing workflows to eliminate friction before writing a single line of code." },
-    { label: "Pixel Precision",   body: "Rigorous attention to typography, spacing, contrast, and layout balance." },
-    { label: "Architecture",      body: "Type safety, component reusability, and clean data contracts at every layer." },
+    { label: "Product Intuition", body: "Deconstructing workflows to eliminate friction before writing code." },
+    { label: "Pixel Precision",   body: "Careful attention to typography, spacing, contrast, and layout balance." },
+    { label: "Architecture",      body: "Type safety, component reusability, and clean data contracts." },
   ];
 
   const quickFacts = [
@@ -61,7 +61,7 @@ export function AboutSection() {
                       fontFamily: "var(--display)",
                       fontWeight: 800,
                       fontSize: 10,
-                      letterSpacing: ".25em",
+                      letterSpacing: ".2em",
                       textTransform: "uppercase",
                       color: "var(--acc)",
                       marginBottom: 8,
@@ -91,7 +91,7 @@ export function AboutSection() {
                 fontFamily: "var(--display)",
                 fontWeight: 800,
                 fontSize: 10,
-                letterSpacing: ".35em",
+                letterSpacing: ".3em",
                 textTransform: "uppercase",
                 color: "var(--acc)",
                 marginBottom: 16,
@@ -117,7 +117,7 @@ export function AboutSection() {
                       fontSize: 10,
                       fontFamily: "var(--display)",
                       fontWeight: 800,
-                      letterSpacing: ".25em",
+                      letterSpacing: ".2em",
                       textTransform: "uppercase",
                       color: "var(--fg-4)",
                       marginBottom: 4,
