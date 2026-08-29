@@ -207,8 +207,7 @@ body.cursor-hot #vk-cursor-ring {
    =========================================================== */
 .container {
   width: 100%;
-  max-width: var(--max-w);
-  margin: 0 auto;
+  max-width: 100%;
   padding: 0 var(--gut);
 }
 
@@ -279,6 +278,32 @@ body.cursor-hot #vk-cursor-ring {
 .section-head p { margin-top: 18px; }
 
 .rule { height: 1px; background: var(--line); border: 0; }
+
+/* Web Experience Card Hover Yellow Border */
+.web-exp-card {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  transition: background .2s var(--ease);
+}
+
+.web-exp-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border: 2px solid transparent;
+  pointer-events: none;
+  z-index: 30;
+  transition: border-color .2s var(--ease);
+}
+
+.web-exp-card:hover::after {
+  border-color: var(--acc);
+}
+
+.web-exp-card:hover {
+  z-index: 20;
+}
 
 /* ===========================================================
    BUTTONS — Kurosawa style (sharp 3px radius)

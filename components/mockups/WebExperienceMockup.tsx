@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { WebExperience } from "@/data/web-experiences";
-import { Lock, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export function WebExperienceMockup({ exp }: { exp: WebExperience }) {
   const [imageError, setImageError] = useState(false);
@@ -22,7 +22,7 @@ export function WebExperienceMockup({ exp }: { exp: WebExperience }) {
       }}
       className="group/mockup"
     >
-      {/* Browser chrome header */}
+      {/* Clean top bar */}
       <div
         style={{
           height: 32,
@@ -37,95 +37,31 @@ export function WebExperienceMockup({ exp }: { exp: WebExperience }) {
           zIndex: 10,
         }}
       >
-        {/* macOS traffic light dots */}
-        <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-          <span
-            style={{
-              width: 7,
-              height: 7,
-              borderRadius: "50%",
-              background: "#FF5F56",
-              opacity: 0.8,
-              display: "inline-block",
-            }}
-          />
-          <span
-            style={{
-              width: 7,
-              height: 7,
-              borderRadius: "50%",
-              background: "#FFBD2E",
-              opacity: 0.8,
-              display: "inline-block",
-            }}
-          />
-          <span
-            style={{
-              width: 7,
-              height: 7,
-              borderRadius: "50%",
-              background: "#27C93F",
-              opacity: 0.8,
-              display: "inline-block",
-            }}
-          />
-        </div>
-
-        {/* Address pill */}
-        <div
+        <span
           style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 5,
-            background: "var(--ink-2)",
-            border: "1px solid var(--line)",
-            padding: "2px 10px",
-            borderRadius: 3,
-            maxWidth: "60%",
+            fontFamily: "var(--display)",
+            fontWeight: 800,
+            fontSize: 9,
+            letterSpacing: ".15em",
+            textTransform: "uppercase",
+            color: "var(--fg-3)",
           }}
         >
-          <Lock size={9} style={{ color: "var(--acc)", flexShrink: 0 }} />
-          <span
-            style={{
-              fontFamily: "var(--body)",
-              fontSize: 9,
-              color: "var(--fg-3)",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              letterSpacing: ".02em",
-            }}
-          >
-            {exp.domain || exp.url?.replace(/^https?:\/\//, "")}
-          </span>
-        </div>
+          {exp.domain || exp.url?.replace(/^https?:\/\//, "")}
+        </span>
 
-        {/* Live status badge */}
-        <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-          <span
-            style={{
-              width: 5,
-              height: 5,
-              borderRadius: "50%",
-              background: "var(--ok)",
-              display: "inline-block",
-              boxShadow: "0 0 6px var(--ok)",
-            }}
-            className="animate-pulse"
-          />
-          <span
-            style={{
-              fontFamily: "var(--display)",
-              fontWeight: 800,
-              fontSize: 7,
-              letterSpacing: ".2em",
-              textTransform: "uppercase",
-              color: "var(--fg-3)",
-            }}
-          >
-            Live
-          </span>
-        </div>
+        <span
+          style={{
+            fontFamily: "var(--display)",
+            fontWeight: 800,
+            fontSize: 8,
+            letterSpacing: ".15em",
+            textTransform: "uppercase",
+            color: "var(--acc)",
+          }}
+        >
+          {exp.category}
+        </span>
       </div>
 
       {/* Screenshot Viewport Container */}
@@ -139,114 +75,88 @@ export function WebExperienceMockup({ exp }: { exp: WebExperience }) {
         }}
       >
         {exp.image && !imageError ? (
-          <div style={{ position: "relative", width: "100%", height: "100%" }}>
-            <Image
-              src={exp.image}
-              alt={`${exp.name} screenshot preview`}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-              onError={() => setImageError(true)}
-              priority={exp.id === "logistiex" || exp.id === "naicos-ai"}
-            />
-            {/* Subtle bottom gradient to blend cleanly */}
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.55) 100%)",
-                pointerEvents: "none",
-                transition: "opacity 0.3s ease",
-              }}
-              className="group-hover:opacity-40"
-            />
-          </div>
+          <Image
+            src={exp.image}
+            alt={`${exp.name} platform interface`}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover object-top transition-transform duration-700 ease-out group-hover/mockup:scale-105"
+            onError={() => setImageError(true)}
+            priority={false}
+          />
         ) : (
-          /* Fallback aesthetic visual */
+          /* Fallback */
           <div
             style={{
               width: "100%",
               height: "100%",
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
               alignItems: "center",
+              justifyContent: "center",
               padding: 20,
-              background: "var(--ink-3)",
-              position: "relative",
+              background: "linear-gradient(135deg, var(--ink-2) 0%, var(--panel) 100%)",
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                opacity: 0.04,
-                backgroundImage:
-                  "linear-gradient(var(--acc) 1px, transparent 1px), linear-gradient(90deg, var(--acc) 1px, transparent 1px)",
-                backgroundSize: "20px 20px",
-              }}
-            />
             <span
               style={{
                 fontFamily: "var(--display)",
                 fontWeight: 800,
-                fontSize: 14,
+                fontSize: 16,
                 letterSpacing: ".15em",
                 textTransform: "uppercase",
                 color: "var(--fg)",
+                textAlign: "center",
                 marginBottom: 6,
-                position: "relative",
-                zIndex: 1,
               }}
             >
               {exp.name}
             </span>
             <span
               style={{
-                fontFamily: "var(--body)",
                 fontSize: 11,
                 color: "var(--fg-3)",
-                position: "relative",
-                zIndex: 1,
+                textAlign: "center",
               }}
             >
-              {exp.category}
+              {exp.description}
             </span>
           </div>
         )}
 
-        {/* Hover quick overlay pill */}
+        {/* Hover action prompt */}
         <div
           style={{
             position: "absolute",
-            bottom: 10,
-            right: 10,
-            background: "rgba(0, 0, 0, 0.75)",
-            backdropFilter: "blur(4px)",
-            border: "1px solid var(--line)",
-            padding: "4px 8px",
+            inset: 0,
+            background: "rgba(0, 0, 0, 0.4)",
             display: "flex",
             alignItems: "center",
-            gap: 4,
-            transition: "all 0.25s ease",
+            justifyContent: "center",
+            opacity: 0,
+            transition: "opacity .25s ease",
           }}
-          className="opacity-90 group-hover:border-[var(--acc)] group-hover:bg-black"
+          className="group-hover/mockup:opacity-100"
         >
-          <span
+          <div
             style={{
-              fontFamily: "var(--display)",
+              background: "var(--panel)",
+              border: "1px solid var(--acc)",
+              padding: "6px 14px",
+              display: "flex",
+              alignItems: "center",
+              gap: 6,
+              fontSize: 10,
               fontWeight: 800,
-              fontSize: 8,
-              letterSpacing: ".2em",
+              fontFamily: "var(--display)",
+              letterSpacing: ".15em",
               textTransform: "uppercase",
-              color: "var(--fg)",
+              color: "var(--acc)",
             }}
-            className="group-hover:text-[var(--acc)]"
           >
-            Preview
-          </span>
-          <ArrowUpRight size={10} style={{ color: "var(--acc)" }} />
+            <span>Explore Overview</span>
+            <ArrowUpRight size={11} />
+          </div>
         </div>
       </div>
     </div>

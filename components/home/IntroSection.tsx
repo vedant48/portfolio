@@ -1,19 +1,18 @@
 import React from "react";
 import { profile } from "@/data/profile";
-import { HeroFlowVisual } from "@/components/hero/HeroFlowVisual";
 
 export function IntroSection() {
   const stats = [
-    { num: "3+", label: "Years Experience", desc: "Production software" },
-    { num: "5+", label: "Products Shipped", desc: "SaaS & AI platforms" },
-    { num: "100%", label: "Type-Safe Code", desc: "TypeScript & React" },
+    { num: "3+", label: "Years Experience", sub: "Logistics, SaaS & AI" },
+    { num: "05+", label: "Production Platforms", sub: "Enterprise & Customer facing" },
+    { num: "100%", label: "TypeScript & React", sub: "Type-safe architecture" },
   ];
 
   return (
-    <section id="intro" className="section" style={{ borderTop: "1px solid var(--line)" }}>
+    <section className="section" style={{ borderTop: "1px solid var(--line)" }}>
       <div className="container">
         {/* Top Section Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-start mb-12 sm:mb-16 lg:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-start">
           {/* Left: Eyebrow + Big Headline */}
           <div className="lg:col-span-5 fade-up">
             <span className="eyebrow">00 / Philosophy &amp; Approach</span>
@@ -34,7 +33,7 @@ export function IntroSection() {
               {profile.introBody}
             </p>
 
-            {/* 3 Metric Cards with Kurosawa borders */}
+            {/* 3 Metric Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 bg-[var(--line)] border border-[var(--line)]">
               {stats.map((stat) => (
                 <div
@@ -48,50 +47,35 @@ export function IntroSection() {
                     style={{
                       fontFamily: "var(--display)",
                       fontWeight: 800,
-                      fontSize: "clamp(24px, 3vw, 36px)",
+                      fontSize: "clamp(26px, 3vw, 38px)",
                       letterSpacing: "-.02em",
                       lineHeight: 1,
-                      color: "var(--fg)",
-                      marginBottom: 6,
+                      color: "var(--acc)",
+                      marginBottom: 8,
                     }}
                   >
                     {stat.num}
                   </div>
                   <div
                     style={{
+                      fontFamily: "var(--display)",
+                      fontWeight: 800,
                       fontSize: 10,
-                      fontWeight: 700,
                       letterSpacing: ".2em",
                       textTransform: "uppercase",
-                      color: "var(--fg-3)",
-                      marginBottom: 2,
+                      color: "var(--fg)",
+                      marginBottom: 4,
                     }}
                   >
                     {stat.label}
                   </div>
-                  <div
-                    style={{
-                      fontSize: 11,
-                      color: "var(--fg-4)",
-                    }}
-                  >
-                    {stat.desc}
+                  <div style={{ fontSize: 11, color: "var(--fg-3)" }}>
+                    {stat.sub}
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-
-        {/* Bottom Interactive Execution Spectrum */}
-        <div
-          className="fade-up fade-up-delay-2"
-          style={{
-            borderTop: "1px solid var(--line)",
-            paddingTop: "clamp(32px, 5vh, 48px)",
-          }}
-        >
-          <HeroFlowVisual />
         </div>
       </div>
     </section>

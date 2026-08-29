@@ -41,25 +41,25 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
         className="fade-up group"
         style={{
           ...cardBase,
-          padding: "clamp(20px, 3.5vw, 48px)",
+          padding: "clamp(20px, 3.5vw, 44px)",
         }}
       >
         {/* Top meta row */}
         <div
           style={{
             borderBottom: "1px solid var(--line)",
-            paddingBottom: 18,
-            marginBottom: 24,
+            paddingBottom: 16,
+            marginBottom: 20,
           }}
           className="flex flex-col sm:flex-row sm:items-center justify-between gap-3"
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <span
               style={{
                 fontFamily: "var(--display)",
                 fontWeight: 800,
                 fontSize: 10,
-                letterSpacing: ".35em",
+                letterSpacing: ".25em",
                 color: "var(--fg-4)",
               }}
             >
@@ -70,7 +70,7 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
                 fontFamily: "var(--display)",
                 fontWeight: 800,
                 fontSize: 10,
-                letterSpacing: ".35em",
+                letterSpacing: ".25em",
                 textTransform: "uppercase",
                 color: "var(--acc)",
               }}
@@ -97,12 +97,12 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
               style={{
                 fontFamily: "var(--display)",
                 fontWeight: 800,
-                fontSize: "clamp(22px, 3.2vw, 42px)",
+                fontSize: "clamp(22px, 3.2vw, 40px)",
                 letterSpacing: "-.02em",
                 textTransform: "uppercase",
                 lineHeight: .95,
                 color: "var(--fg)",
-                marginBottom: 12,
+                marginBottom: 10,
               }}
             >
               {project.title}
@@ -141,7 +141,7 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
                 fontFamily: "var(--display)",
                 fontWeight: 800,
                 fontSize: 9,
-                letterSpacing: ".25em",
+                letterSpacing: ".2em",
                 textTransform: "uppercase",
                 color: "var(--fg-3)",
                 padding: "3px 8px",
@@ -156,14 +156,129 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
     );
   }
 
-  // ── Stacked (compact panels in 2-col grid) ───────────────────────────────
+  // ── Stacked (for 2-column grid) ──
   if (layoutVariant === "stacked") {
     return (
-      <div style={{ marginTop: 8 }}>
-        <div style={{ overflow: "hidden", border: "1px solid var(--line)" }} className="w-full">
-          {renderMockup(project.id, true)}
+      <article
+        className="fade-up group flex flex-col justify-between"
+        style={{
+          ...cardBase,
+          padding: "clamp(20px, 3vw, 36px)",
+          animationDelay: `${index * 0.1}s`,
+        }}
+      >
+        <div>
+          {/* Top meta row */}
+          <div
+            style={{
+              borderBottom: "1px solid var(--line)",
+              paddingBottom: 14,
+              marginBottom: 18,
+            }}
+            className="flex items-center justify-between"
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <span
+                style={{
+                  fontFamily: "var(--display)",
+                  fontWeight: 800,
+                  fontSize: 10,
+                  letterSpacing: ".25em",
+                  color: "var(--fg-4)",
+                }}
+              >
+                {project.number}
+              </span>
+              <span
+                style={{
+                  fontFamily: "var(--display)",
+                  fontWeight: 800,
+                  fontSize: 10,
+                  letterSpacing: ".25em",
+                  textTransform: "uppercase",
+                  color: "var(--acc)",
+                }}
+              >
+                {project.label}
+              </span>
+            </div>
+            <span style={{ fontSize: 11, color: "var(--fg-3)", letterSpacing: ".04em" }}>
+              {project.period}
+            </span>
+          </div>
+
+          {/* Title & Description */}
+          <h3
+            style={{
+              fontFamily: "var(--display)",
+              fontWeight: 800,
+              fontSize: "clamp(18px, 2vw, 24px)",
+              letterSpacing: "-.02em",
+              textTransform: "uppercase",
+              lineHeight: .98,
+              color: "var(--fg)",
+              marginBottom: 8,
+            }}
+          >
+            {project.title}
+          </h3>
+          <p style={{ fontSize: 13, color: "var(--fg-2)", lineHeight: 1.7, marginBottom: 18 }}>
+            {project.description}
+          </p>
         </div>
-      </div>
+
+        <div>
+          {/* Mockup */}
+          <div
+            style={{
+              overflow: "hidden",
+              border: "1px solid var(--line)",
+              transition: "transform .35s var(--ease)",
+            }}
+            className="w-full group-hover:scale-[1.01] mb-5"
+          >
+            {renderMockup(project.id, false)}
+          </div>
+
+          {/* Bottom Action & Tech Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
+              {project.technologies.slice(0, 3).map((t) => (
+                <span
+                  key={t}
+                  style={{
+                    fontSize: 9,
+                    fontFamily: "var(--display)",
+                    fontWeight: 800,
+                    letterSpacing: ".2em",
+                    textTransform: "uppercase",
+                    color: "var(--fg-3)",
+                    padding: "3px 8px",
+                    border: "1px solid var(--line)",
+                  }}
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            <Link
+              href={`/work/${project.slug}`}
+              className="btn btn-primary self-start sm:self-auto"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "9px 16px",
+                fontSize: 11,
+              }}
+            >
+              <span>{project.hasCaseStudy ? "Case study" : "View project"}</span>
+              <ArrowRight size={12} />
+            </Link>
+          </div>
+        </div>
+      </article>
     );
   }
 
@@ -181,18 +296,18 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
       <div
         style={{
           borderBottom: "1px solid var(--line)",
-          paddingBottom: 16,
-          marginBottom: 22,
+          paddingBottom: 14,
+          marginBottom: 20,
         }}
         className="flex items-center justify-between"
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <span
             style={{
               fontFamily: "var(--display)",
               fontWeight: 800,
               fontSize: 10,
-              letterSpacing: ".35em",
+              letterSpacing: ".25em",
               color: "var(--fg-4)",
             }}
           >
@@ -203,7 +318,7 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
               fontFamily: "var(--display)",
               fontWeight: 800,
               fontSize: 10,
-              letterSpacing: ".35em",
+              letterSpacing: ".25em",
               textTransform: "uppercase",
               color: "var(--acc)",
             }}
@@ -216,7 +331,7 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
         </span>
       </div>
 
-      {/* Responsive Grid: 1 col on mobile/tablet, 12 cols on desktop */}
+      {/* Responsive Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-10 items-center">
         {/* Left: text */}
         <div className="lg:col-span-5">
@@ -243,7 +358,7 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
               fontSize: 9,
               fontFamily: "var(--display)",
               fontWeight: 800,
-              letterSpacing: ".35em",
+              letterSpacing: ".25em",
               textTransform: "uppercase",
               color: "var(--fg-4)",
               marginBottom: 3,
@@ -263,7 +378,7 @@ export function ProjectCard({ project, layoutVariant = "split", index = 0 }: Pro
                   fontSize: 9,
                   fontFamily: "var(--display)",
                   fontWeight: 800,
-                  letterSpacing: ".25em",
+                  letterSpacing: ".2em",
                   textTransform: "uppercase",
                   color: "var(--fg-3)",
                   padding: "3px 8px",

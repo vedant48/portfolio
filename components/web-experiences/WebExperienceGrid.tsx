@@ -19,33 +19,23 @@ export function WebExperienceGrid() {
           <h2 className="h-display h-lg">
             Web <span className="text-outline">Experiences</span>
           </h2>
-          <p className="lede" style={{ marginTop: 18 }}>
-            Live enterprise platforms, agentic AI operating systems, logistics engines, and digital homes
-            engineered with modern frontend architecture.
+          <p className="lede" style={{ marginTop: 14 }}>
+            Live enterprise platforms, agentic AI systems, logistics operations, and digital portals.
           </p>
         </div>
 
-        {/* Responsive Grid — zero-gap sharp cards */}
+        {/* Responsive Grid — 3 column cards */}
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[2px] bg-[var(--line)] border border-[var(--line)]"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2"
         >
           {webExperiences.map((exp, i) => (
             <article
               key={exp.id}
               onClick={() => setSelectedExp(exp)}
-              className="group fade-up flex flex-col justify-between"
+              className="web-exp-card group fade-up flex flex-col justify-between"
               style={{
-                background: "var(--panel)",
                 cursor: "pointer",
-                transition: "border-color .25s var(--ease), background .25s var(--ease)",
                 animationDelay: `${i * 0.08}s`,
-              }}
-              /* Yellow border effect on hover */
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.boxShadow = "inset 0 0 0 1px var(--acc)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.boxShadow = "none";
               }}
             >
               {/* Mockup preview with screenshot */}
@@ -356,7 +346,7 @@ export function WebExperienceGrid() {
                     key={i}
                     style={{ display: "flex", gap: 10, fontSize: 12, color: "var(--fg-2)", lineHeight: 1.6 }}
                   >
-                    <span style={{ color: "var(--acc)", fontWeight: 800, flexShrink: 0 }}>—</span>
+                    <span style={{ color: "var(--acc)", fontWeight: 800, flexShrink: 0 }}>•</span>
                     {h}
                   </li>
                 ))}
