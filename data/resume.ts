@@ -111,7 +111,7 @@ export const resumeData: ResumeData = {
       institution: "Computer Science and Engineering",
       period: "2020 – 2024",
       location: "India",
-      score: "First Class",
+      score: "8.03 CPI",
     },
   ],
   skills: [
