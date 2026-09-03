@@ -12,6 +12,21 @@ interface ResumeModalProps {
 }
 
 export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
+  React.useEffect(() => {
+    if (isOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      const onKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") onClose();
+      };
+      window.addEventListener("keydown", onKeyDown);
+      return () => {
+        document.body.style.overflow = prev;
+        window.removeEventListener("keydown", onKeyDown);
+      };
+    }
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return (
@@ -25,7 +40,7 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "clamp(12px, 3vw, 40px)",
+        padding: "clamp(8px, 2.5vw, 40px)",
         overflowY: "auto",
       }}
       onClick={onClose}
@@ -36,7 +51,7 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
           maxWidth: 820,
           background: "var(--panel)",
           border: "1px solid var(--line)",
-          maxHeight: "92vh",
+          maxHeight: "92dvh",
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
@@ -45,19 +60,8 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Toolbar */}
-        <div
-          style={{
-            padding: "14px clamp(16px, 2.5vw, 28px)",
-            borderBottom: "1px solid var(--line)",
-            background: "var(--ink-2)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexShrink: 0,
-            gap: 12,
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+        <div className="resume-modal-toolbar">
+          <div className="resume-modal-title-row">
             <span
               style={{
                 fontFamily: "var(--display)",
@@ -70,24 +74,30 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
             >
               {resumeData.name} · Resume
             </span>
-            <span
+
+            {/* Mobile close button */}
+            <button
+              onClick={onClose}
+              aria-label="Close modal"
               style={{
-                fontFamily: "var(--display)",
-                fontWeight: 800,
-                fontSize: 8,
-                letterSpacing: ".25em",
-                textTransform: "uppercase",
-                color: "var(--ok)",
-                padding: "2px 7px",
-                border: "1px solid var(--ok)",
-                background: "rgba(34, 197, 94, 0.08)",
+                width: 32,
+                height: 32,
+                border: "1px solid var(--line)",
+                background: "var(--panel)",
+                color: "var(--fg-3)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                transition: "border-color .2s ease, color .2s ease",
               }}
+              className="resume-modal-close-mobile hover:border-[var(--acc)] hover:text-[var(--acc)] transition-colors"
             >
-              ATS Verified PDF
-            </span>
+              <X size={13} />
+            </button>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <div className="resume-modal-actions">
             <a
               href="/Vedant_Kumar_Resume.pdf"
               download="Vedant_Kumar_Resume.pdf"
@@ -105,6 +115,7 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
               <ExternalLink size={12} />
               <span>Full Page</span>
             </Link>
+            {/* Desktop close button */}
             <button
               onClick={onClose}
               aria-label="Close modal"
@@ -120,15 +131,15 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                 cursor: "pointer",
                 transition: "border-color .2s ease, color .2s ease",
               }}
-              className="hover:border-[var(--acc)] hover:text-[var(--acc)] transition-colors"
+              className="resume-modal-close-desktop hover:border-[var(--acc)] hover:text-[var(--acc)] transition-colors"
             >
               <X size={13} />
             </button>
           </div>
         </div>
 
-        {/* Scrollable ATS Resume Document */}
-        <div style={{ overflowY: "auto", padding: "clamp(24px, 4vw, 44px)", flex: 1, background: "var(--panel)" }}>
+        {/* Scrollable Resume Document */}
+        <div style={{ overflowY: "auto", padding: "clamp(20px, 4vw, 44px)", flex: 1, background: "var(--panel)", WebkitOverflowScrolling: "touch" }}>
 
           {/* Header & Contact Information */}
           <div style={{ borderBottom: "1px solid var(--line)", paddingBottom: 20, marginBottom: 24 }}>

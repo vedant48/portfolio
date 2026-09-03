@@ -186,14 +186,13 @@ export function Hero({ onOpenResumeModal }: HeroProps) {
           </div>
         </div>
 
-        {/* Scroll hint — bottom */}
+        {/* Scroll hint — desktop only, removed on phone view */}
         <div
-          className="fade-up"
+          className="hidden md:flex fade-up"
           style={{
             position: "absolute",
             bottom: "clamp(28px, 5vh, 48px)",
             right: "var(--gut)",
-            display: "flex",
             flexDirection: "column",
             alignItems: "center",
             gap: 8,

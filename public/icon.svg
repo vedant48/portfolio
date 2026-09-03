@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#121318" />
+      <stop offset="100%" stop-color="#08090b" />
+    </linearGradient>
+  </defs>
+  <style>
+    .bg-rect { fill: url(#bgGrad); stroke: #26272e; stroke-width: 1.5; }
+    .grid { stroke: #22242a; stroke-width: 0.75; opacity: 0.8; }
+    .acc-corner { stroke: #F5C518; stroke-width: 2; stroke-linecap: round; }
+    .mono-v { fill: #ffffff; }
+    .mono-k { fill: #F5C518; }
+    .acc-dot { fill: #F5C518; }
+    @media (prefers-color-scheme: light) {
+      .bg-rect { fill: #ffffff; stroke: #e0e0e0; }
+      .grid { stroke: #f0f0f0; }
+      .mono-v { fill: #0a0a0a; }
+    }
+  </style>
+
+  <!-- Base Badge -->
+  <rect class="bg-rect" x="2" y="2" width="44" height="44" rx="10" />
+
+  <!-- Subtle Tech Grid Lines -->
+  <line class="grid" x1="2" y1="13" x2="46" y2="13" />
+  <line class="grid" x1="35" y1="2" x2="35" y2="46" />
+
+  <!-- Gold Accent Corner -->
+  <path class="acc-corner" d="M33 5H41C42.1 5 43 5.9 43 7V15" />
+
+  <!-- Monogram 'V' -->
+  <path class="mono-v" d="M12 14.5L20.5 32H23L31.5 14.5H27.2L21.75 26L16.3 14.5H12Z" />
+
+  <!-- Monogram 'K' Branches -->
+  <path class="mono-k" d="M23.5 21L30.5 14.5H35L26.8 22.3L23.5 21Z" />
+  <path class="mono-k" d="M25 21.5L33.5 32H29L21.8 23.3L25 21.5Z" />
+
+  <!-- Accent Detail Dot -->
+  <circle class="acc-dot" cx="21.75" cy="29" r="1.2" />
+</svg>

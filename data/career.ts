@@ -14,7 +14,7 @@ export const careerTimeline: CareerMilestone[] = [
     year: "2026",
     role: "Software Engineer II",
     company: "Noetic LogistieX",
-    location: "Gurugram / Hybrid",
+    location: "Ghaziabad, UP / Hybrid",
     type: "Full-time",
     scope: "Core AI Products, Frontend Architecture & Design Systems",
     highlights: [
@@ -30,7 +30,7 @@ export const careerTimeline: CareerMilestone[] = [
     year: "2024",
     role: "Software Engineer",
     company: "LogistieX",
-    location: "Gurugram",
+    location: "Ghaziabad, UP",
     type: "Full-time",
     scope: "Seller Platform, OMS, Pricing Intelligence & Courier Systems",
     highlights: [
@@ -46,7 +46,7 @@ export const careerTimeline: CareerMilestone[] = [
     year: "2023",
     role: "Software Engineer Intern",
     company: "LogistieX",
-    location: "Gurugram",
+    location: "Ghaziabad, UP",
     type: "Internship",
     scope: "Logistics Mobile Application & Marketing Web Properties",
     highlights: [

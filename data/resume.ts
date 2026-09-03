@@ -59,7 +59,7 @@ export const resumeData: ResumeData = {
       company: "Noetic LogistieX",
       role: "Software Engineer II",
       period: "2025 – Present (2026)",
-      location: "Gurugram / Hybrid, India",
+      location: "Ghaziabad, UP / Hybrid, India",
       summary:
         "Leading frontend architecture and product development for enterprise AI catalog intelligence and shared design systems.",
       highlights: [
@@ -78,7 +78,7 @@ export const resumeData: ResumeData = {
       company: "Noetic LogistieX",
       role: "Software Engineer",
       period: "2024 – 2025",
-      location: "Gurugram, India",
+      location: "Ghaziabad, UP, India",
       summary:
         "Engineered scalable frontend modules for multi-channel commerce operations, order lifecycle management, and pricing intelligence.",
       highlights: [
@@ -94,7 +94,7 @@ export const resumeData: ResumeData = {
       company: "LogistieX",
       role: "Software Engineer Intern",
       period: "2023 – 2024",
-      location: "Gurugram, India",
+      location: "Ghaziabad, UP, India",
       summary:
         "Contributed to mobile ordering applications, warehouse scanner integrations, and marketing web properties.",
       highlights: [

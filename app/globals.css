@@ -482,3 +482,60 @@ body.cursor-hot #vk-cursor-ring {
 
 .animate-fadeIn { animation: fadeIn 0.4s var(--ease) forwards; }
 .animate-pulse-ok { animation: pulseOk 2s ease-in-out infinite; }
+
+/* ===========================================================
+   RESUME MODAL RESPONSIVE TOOLBAR
+   =========================================================== */
+.resume-modal-toolbar {
+  padding: 14px clamp(16px, 2.5vw, 28px);
+  border-bottom: 1px solid var(--line);
+  background: var(--ink-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  gap: 12px;
+}
+
+.resume-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.resume-modal-close-mobile {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  .resume-modal-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px 14px;
+  }
+  .resume-modal-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .resume-modal-close-desktop {
+    display: none !important;
+  }
+  .resume-modal-close-mobile {
+    display: flex !important;
+  }
+  .resume-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+  .resume-modal-actions a {
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
