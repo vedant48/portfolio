@@ -50,6 +50,13 @@ export const metadata: Metadata = {
     description:
       "3+ years building SaaS, logistics, and AI-powered products from mobile applications to AI catalog workflows.",
   },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/apple-icon.png",
+  },
   robots: { index: true, follow: true },
 };
 
