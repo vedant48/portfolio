@@ -16,14 +16,17 @@ export function SellereXUSPMockup({ compact = false }: SellereXUSPMockupProps) {
       }}
       className="w-full overflow-hidden flex flex-col font-sans"
     >
-      {/* Full 16:9 Image Viewport */}
-      <div className="relative w-full aspect-[16/9] bg-[#0c0d10] overflow-hidden group/viewport">
+      {/* Native screenshot aspect ratio so 100% of the image fits without cropping */}
+      <div
+        style={{ aspectRatio: "1920 / 869" }}
+        className="relative w-full bg-[#0c0d10] overflow-hidden group/viewport"
+      >
         <Image
-          src="/mockups/sellerex-mockup.jpg"
+          src="/mockups/My-Catalogs-SellereX-09-04-2026_12_27_AM.png"
           alt="SellereX AI Catalog & Image Studio Platform Design"
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
-          className="object-cover object-center transition-transform duration-700 ease-out group-hover/viewport:scale-[1.01]"
+          className="object-contain w-full h-full transition-transform duration-700 ease-out group-hover/viewport:scale-[1.01]"
           priority
         />
       </div>
