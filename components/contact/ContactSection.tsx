@@ -18,7 +18,7 @@ export function ContactSection() {
       <div className="container">
         <div className="fade-up" style={{ maxWidth: 720 }}>
           {/* Eyebrow */}
-          <span className="eyebrow">06 / Get In Touch</span>
+          <span className="eyebrow">07 / Get In Touch</span>
 
           {/* Big headline */}
           <h2 className="h-display h-xl" style={{ marginBottom: "clamp(20px, 3vh, 36px)", lineHeight: .9 }}>

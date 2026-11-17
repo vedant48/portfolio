@@ -9,6 +9,7 @@ import { IntroSection } from "@/components/home/IntroSection";
 import { ProjectGrid } from "@/components/work/ProjectGrid";
 import { CareerTimeline } from "@/components/journey/CareerTimeline";
 import { WebExperienceGrid } from "@/components/web-experiences/WebExperienceGrid";
+import { SideProjects } from "@/components/work/SideProjects";
 import { SkillGroups } from "@/components/skills/SkillGroups";
 import { AboutSection } from "@/components/about/AboutSection";
 import { ContactSection } from "@/components/contact/ContactSection";
@@ -49,6 +50,9 @@ export default function HomePage() {
 
         {/* Web Experiences */}
         <WebExperienceGrid />
+
+        {/* Side projects */}
+        <SideProjects />
 
         {/* Skills & Domain */}
         <SkillGroups />
