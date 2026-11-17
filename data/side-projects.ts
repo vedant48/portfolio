@@ -80,13 +80,4 @@ export const sideProjects: SideProject[] = [
     repo: gh("ApplyFeed"),
     live: "https://apply-feed.vercel.app",
   },
-  {
-    id: "propsoch",
-    name: "Propsoch Redesign",
-    summary:
-      "Audit-led redesign of the Propsoch landing page, with Lighthouse mobile performance taken from 41 to 96.",
-    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind"],
-    repo: gh("propsoch-landing-page-redesign"),
-    live: "https://propsoch-landing-page-redesign.vercel.app",
-  },
 ];
