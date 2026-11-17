@@ -79,9 +79,8 @@ export function CaseStudyHero({ project }: { project: Project }) {
 
       {/* Metadata Matrix */}
       <div
+        className="grid grid-cols-2 md:grid-cols-4"
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
           gap: 2,
           borderTop: "1px solid var(--line)",
           paddingTop: 24,

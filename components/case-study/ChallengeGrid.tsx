@@ -34,9 +34,8 @@ export function ChallengeGrid({ challenges }: { challenges: ChallengeItem[] }) {
             </h4>
 
             <div
+              className="grid grid-cols-1 md:grid-cols-3"
               style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
                 gap: 2,
               }}
             >
