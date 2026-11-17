@@ -20,7 +20,7 @@ export function AboutSection() {
       <div className="container">
         {/* Section Header */}
         <div className="section-head fade-up">
-          <span className="eyebrow">05 / Background &amp; Philosophy</span>
+          <span className="eyebrow">06 / Background &amp; Philosophy</span>
           <h2 className="h-display h-lg">
             A little about <span className="text-outline">me.</span>
           </h2>
