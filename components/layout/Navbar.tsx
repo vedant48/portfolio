@@ -37,7 +37,7 @@ export function Navbar({ onOpenResumeModal, onOpenCommandPalette: _onOpenCommand
         </Link>
 
         {/* Desktop Nav Links */}
-        <ul className="hidden md:flex items-center" style={{ gap: "clamp(12px, 1.8vw, 26px)", listStyle: "none" }}>
+        <ul className="hidden lg:flex items-center" style={{ gap: "clamp(12px, 1.8vw, 26px)", listStyle: "none" }}>
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
@@ -59,7 +59,7 @@ export function Navbar({ onOpenResumeModal, onOpenCommandPalette: _onOpenCommand
         </ul>
 
         {/* Desktop Right Actions */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <ThemeToggle />
           <button
             onClick={onOpenResumeModal}
@@ -72,7 +72,7 @@ export function Navbar({ onOpenResumeModal, onOpenCommandPalette: _onOpenCommand
         </div>
 
         {/* Mobile Controls */}
-        <div className="flex md:hidden items-center gap-3">
+        <div className="flex lg:hidden items-center gap-3">
           <ThemeToggle />
           <button
             aria-label="Toggle menu"
