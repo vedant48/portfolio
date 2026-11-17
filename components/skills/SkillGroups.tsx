@@ -7,7 +7,7 @@ export function SkillGroups() {
       <div className="container">
         {/* Header */}
         <div className="section-head fade-up">
-          <span className="eyebrow">04 / Technical Capabilities</span>
+          <span className="eyebrow">05 / Technical Capabilities</span>
           <h2 className="h-display h-lg">
             Skills &amp; <span className="text-outline">Domain</span>
           </h2>
