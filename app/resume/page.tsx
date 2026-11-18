@@ -106,6 +106,9 @@ export default function ResumePage() {
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 22px", fontSize: 12, color: "var(--fg-3)" }}>
               <span style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                <MapPin size={11} style={{ color: "var(--acc)" }} /> {resumeData.contact.location}
+              </span>
+              <span style={{ display: "flex", alignItems: "center", gap: 5 }}>
                 <Phone size={11} style={{ color: "var(--acc)" }} /> {resumeData.contact.phone}
               </span>
               <a
@@ -265,32 +268,34 @@ export default function ResumePage() {
                     ))}
                   </ul>
 
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-                    {exp.technologies.map((t) => (
-                      <span
-                        key={t}
-                        style={{
-                          fontFamily: "var(--display)",
-                          fontWeight: 800,
-                          fontSize: 8,
-                          letterSpacing: ".2em",
-                          textTransform: "uppercase",
-                          color: "var(--fg-3)",
-                          padding: "2px 6px",
-                          border: "1px solid var(--line)",
-                          background: "var(--ink-2)",
-                        }}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+                  {exp.technologies && exp.technologies.length > 0 && (
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+                      {exp.technologies.map((t) => (
+                        <span
+                          key={t}
+                          style={{
+                            fontFamily: "var(--display)",
+                            fontWeight: 800,
+                            fontSize: 8,
+                            letterSpacing: ".2em",
+                            textTransform: "uppercase",
+                            color: "var(--fg-3)",
+                            padding: "2px 6px",
+                            border: "1px solid var(--line)",
+                            background: "var(--ink-2)",
+                          }}
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Selected Products & Websites */}
+          {/* Projects */}
           <div style={{ marginBottom: 28 }}>
             <span
               style={{
@@ -304,7 +309,7 @@ export default function ResumePage() {
                 marginBottom: 14,
               }}
             >
-              Selected Products &amp; Deployed Systems
+              Projects
             </span>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {resumeData.keyProjects.map((p, i) => (
@@ -315,26 +320,38 @@ export default function ResumePage() {
                     background: "var(--ink-2)",
                     border: "1px solid var(--line)",
                   }}
-                  className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 text-xs"
+                  className="text-xs"
                 >
-                  <div>
-                    <span
-                      style={{
-                        fontFamily: "var(--display)",
-                        fontWeight: 800,
-                        letterSpacing: ".1em",
-                        textTransform: "uppercase",
-                        color: "var(--fg)",
-                        marginRight: 6,
-                      }}
-                    >
-                      {p.name}:
+                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+                    <div>
+                      <span
+                        style={{
+                          fontFamily: "var(--display)",
+                          fontWeight: 800,
+                          letterSpacing: ".1em",
+                          textTransform: "uppercase",
+                          color: "var(--fg)",
+                          marginRight: 6,
+                        }}
+                      >
+                        {p.name}:
+                      </span>
+                      <span style={{ color: "var(--fg-2)" }}>{p.description}</span>
+                    </div>
+                    <span style={{ color: "var(--fg-4)", fontSize: 10, flexShrink: 0 }}>
+                      {p.period ? `${p.period} · ` : ""}{p.technologies.join(" · ")}
                     </span>
-                    <span style={{ color: "var(--fg-2)" }}>{p.description}</span>
                   </div>
-                  <span style={{ color: "var(--fg-4)", fontSize: 10, flexShrink: 0 }}>
-                    {p.technologies.slice(0, 3).join(" · ")}
-                  </span>
+                  {p.highlights && p.highlights.length > 0 && (
+                    <ul style={{ display: "flex", flexDirection: "column", gap: 4, marginTop: 8, listStyle: "none", padding: 0 }}>
+                      {p.highlights.map((hl, j) => (
+                        <li key={j} style={{ display: "flex", gap: 8, fontSize: 12, color: "var(--fg-2)", lineHeight: 1.6 }}>
+                          <span style={{ color: "var(--acc)", fontWeight: 800, flexShrink: 0 }}>•</span>
+                          <span>{hl}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               ))}
             </div>
